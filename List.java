@@ -20,6 +20,9 @@ public class List {
     public int getSize() {
  	      return size;
     }
+    public Node getFirstNode() {
+        return first;
+    }
 
     /** Returns the first element in the list */
     public CharData getFirst() {
@@ -74,13 +77,13 @@ public class List {
     public void update(char chr) {
         // Your code goes here
         boolean isIn = false;
-        Node cur = this.first;
-        while (cur != null){
-            if (cur.cp.equals(chr)){
+        Node current = this.first;
+        while (current != null){
+            if (current.cp.equals(chr)){
                 isIn = true;
-                cur.cp.count++;
+                current.cp.count++;
             }
-            cur = cur.next;
+            current = current.next;
         }
         if(!isIn){
             addFirst(chr);

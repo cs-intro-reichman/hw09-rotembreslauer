@@ -88,24 +88,14 @@ public class LanguageModel {
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
 		// Your code goes here
-            calculateProbabilities(probs);
-            double random = randomGenerator.nextDouble();
-            ListIterator it = probs.listIterator(0);
-            Node first = probs.getFirstNode();
-            if (first.cp.p>random){
-                return first.cp.chr;
-            }
-            while (it.hasNext()){
-                CharData current = it.next();
-                if (random<=current.cp){
-                    return current.chr;
-                }
-            }
-            return ' ';
+        Node current = probs.getFirstNode();
+        double r = randomGenerator.nextDouble();
+        while (r > current.cp.cp)
+        {
+            current = current.next;
         }
-    
-    
-    }
+        return current.cp.chr;
+	}
 
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
